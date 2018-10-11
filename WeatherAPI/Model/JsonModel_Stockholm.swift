@@ -3,7 +3,7 @@
 //  WeatherAPI
 //
 //  Created by Admin on 9/18/18.
-//  Copyright © 2018 MobileAppsCompany. All rights reserved.
+//  Copyright © sss2018 MobileAppsCompany. All rights reserved.
 //
 
 import Foundation
