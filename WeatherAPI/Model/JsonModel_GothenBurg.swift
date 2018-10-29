@@ -20,6 +20,7 @@ struct JsonModel_GothenBurg {
     init() {}
     
     init(json: JSON) {
+        //change [1] ---> [0] to get the current days weather
         min_Temp = json["consolidated_weather"][1]["min_temp"].intValue
         max_Temp = json["consolidated_weather"][1]["max_temp"].intValue
         weatherTypeAbrev = json["consolidated_weather"][1]["weather_state_abbr"].stringValue

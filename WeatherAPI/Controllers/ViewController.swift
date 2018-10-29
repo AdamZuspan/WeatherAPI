@@ -63,6 +63,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         jsonParsing_NewYork()
         jsonParsing_Berlin()
         cityNameTable.reloadData()
+        alert()
+    }
+    func alert() {
+        let alert = UIAlertController(title: "Reloading TableView", message: "Your Weather is Now Up To Date!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+//            let url = URL(string: UIApplicationOpenSettingsURLString)!
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }))
+        self.present(alert, animated: true, completion: nil)
     }
     func jsonParsing_GothenBurg() {
         let url_GothenBurg = URL(string: "https://www.metaweather.com/api/location/890869/")
@@ -187,46 +197,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
+        cell.backgroundColor = UIColor(red:0.54, green:0.53, blue:0.42, alpha:1.0)
         if(finalFlag_NewYork && finalFlag_London && finalFlag_MountainView && finalFlag_Berlin && finalFlag_Stockholm && finalFlag_GothenBurg) {
             switch indexPath.row {
             case 0:
                 cell.cityLabel.text = "GothenBurg"
                 cell.minTempLabel.text = "Min " + String(Double((self.arrData_GothenBurg[indexPath.row].min_Temp)) * 1.8 + 32.0) + "F"
                 cell.maxTempLabel.text = "Max " + String(Double((self.arrData_GothenBurg[indexPath.row].max_Temp)) * 1.8 + 32.0) + "F"
-                cell.humidityLabel.text = "Humidity " + String(self.arrData_GothenBurg[indexPath.row].humidity) + "%"
+                cell.humidityLabel.text = "Humidity: " + String(self.arrData_GothenBurg[indexPath.row].humidity) + "%"
                 cell.weatherImage.kf.setImage(with: url_Image_GothenBurg)
             case 1:
                 cell.cityLabel.text = "Stockholm"
                 cell.minTempLabel.text = "Min " + String(Double((self.arrData_Stockholm[0].min_Temp)) * 1.8 + 32.0) + "F"
                 cell.maxTempLabel.text = "Max " + String(Double((self.arrData_Stockholm[0].max_Temp)) * 1.8 + 32.0) + "F"
-                cell.humidityLabel.text = "Humidity " + String(self.arrData_Stockholm[0].humidity) + "%"
+                cell.humidityLabel.text = "Humidity: " + String(self.arrData_Stockholm[0].humidity) + "%"
                 cell.weatherImage.kf.setImage(with: url_Image_Stockholm)
             case 2:
                 cell.cityLabel.text = "Mountain View"
                 cell.minTempLabel.text = "Min " + String(Double((self.arrData_MountainView[0].min_Temp)) * 1.8 + 32.0) + "F"
                 cell.maxTempLabel.text = "Max " + String(Double((self.arrData_MountainView[0].max_Temp)) * 1.8 + 32.0) + "F"
-                cell.humidityLabel.text = "Humidity " + String(self.arrData_MountainView[0].humidity) + "%"
+                cell.humidityLabel.text = "Humidity: " + String(self.arrData_MountainView[0].humidity) + "%"
                 cell.weatherImage.kf.setImage(with: url_Image_MountainView)
             case 3:
                 cell.cityLabel.text = "London"
                 cell.minTempLabel.text = "Min " + String(Double((self.arrData_London[0].min_Temp)) * 1.8 + 32.0) + "F"
                 cell.maxTempLabel.text = "Max " + String(Double((self.arrData_London[0].max_Temp)) * 1.8 + 32.0) + "F"
-                cell.humidityLabel.text = "Humidity " + String(self.arrData_London[0].humidity) + "%"
+                cell.humidityLabel.text = "Humidity: " + String(self.arrData_London[0].humidity) + "%"
                 cell.weatherImage.kf.setImage(with: url_Image_London)
             case 4:
                 cell.cityLabel.text = "New York"
                 cell.minTempLabel.text = "Min " + String(Double((self.arrData_NewYork[0].min_Temp)) * 1.8 + 32.0) + "F"
                 cell.maxTempLabel.text = "Max " + String(Double((self.arrData_NewYork[0].max_Temp)) * 1.8 + 32.0) + "F"
-                cell.humidityLabel.text = "Humidity " + String(self.arrData_NewYork[0].humidity) + "%"
+                cell.humidityLabel.text = "Humidity: " + String(self.arrData_NewYork[0].humidity) + "%"
                 cell.weatherImage.kf.setImage(with: url_Image_NewYork)
             case 5:
                 cell.cityLabel.text = "Berlin"
                 cell.minTempLabel.text = "Min " + String(Double((self.arrData_Berlin[0].min_Temp)) * 1.8 + 32.0) + "F"
                 cell.maxTempLabel.text = "Max " + String(Double((self.arrData_Berlin[0].max_Temp)) * 1.8 + 32.0) + "F"
-                cell.humidityLabel.text = "Humidity " + String(self.arrData_Berlin[0].humidity) + "%"
+                cell.humidityLabel.text = "Humidity: " + String(self.arrData_Berlin[0].humidity) + "%"
                 cell.weatherImage.kf.setImage(with: url_Image_Berlin)
             default:
-                cell.cityLabel.text = "add new city via CODE BRO"
+                cell.cityLabel.text = "add new city via CODE"
             }
         }
         return cell
